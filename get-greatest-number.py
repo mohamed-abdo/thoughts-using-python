@@ -12,7 +12,7 @@ class Solution():
         #get the absolute value
         if number < 0 :
             number = number *-1
-        #of one digit, return this digit
+        #in case if one digit, return this digit
         if len(str(number)) == 1:
             return number
         """
