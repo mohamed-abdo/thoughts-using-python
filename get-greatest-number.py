@@ -12,7 +12,8 @@ class Solution():
         #get the absolute value
         if number < 0 :
             number = number *-1
-        if len(str(number)) ==1:
+        #of one digit, return this digit
+        if len(str(number)) == 1:
             return number
         """
         procedures
@@ -23,7 +24,7 @@ class Solution():
         5- parse string into integer
 
         """
-        return int(''.join(sorted([x for x in str(number)], reverse=True)))
+        return int(''.join(sorted(str(number), reverse=True)))
 
 class test_Solution(unittest.TestCase):
     def setUp(self):
