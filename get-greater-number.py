@@ -2,7 +2,7 @@ import sys
 import unittest
 
 class Solution():
-    def get_greatestgumber(self, number):
+    def get_greatest_number(self, number):
         if not isinstance(number, int):
             raise TypeError('{0} is mismatched type'.format(number))
         if number > sys.maxsize:
@@ -30,28 +30,28 @@ class test_Solution(unittest.TestCase):
         self.solution = Solution()
 
     def test_oneNumber(self):
-        self.assertEqual(self.solution.get_greatestgumber(3), 3, 'one digit test failes')
+        self.assertEqual(self.solution.get_greatest_number(3), 3, 'one digit test failes')
     
     def test_ManyNumbers(self):
-            self.assertEqual(self.solution.get_greatestgumber(123456789), 987654321, 'many digits test failes')
+            self.assertEqual(self.solution.get_greatest_number(123456789), 987654321, 'many digits test failes')
     
     def test_minValue(self):
-        self.assertEqual(self.solution.get_greatestgumber(-sys.maxsize), 8776444321)
+        self.assertEqual(self.solution.get_greatest_number(-sys.maxsize), 8776444321)
 
     def test_maxValue(self):
-            self.assertEqual(self.solution.get_greatestgumber(sys.maxsize), 8776444321)
+            self.assertEqual(self.solution.get_greatest_number(sys.maxsize), 8776444321)
 
     def test_raiseTypeError(self):
-        self.assertRaises(TypeError,self.solution.get_greatestgumber, 'd245', 'type check failed')
+        self.assertRaises(TypeError,self.solution.get_greatest_number, 'd245', 'type check failed')
 
     def test_raiseTypeErrorWithNone(self):
-        self.assertRaises(TypeError,self.solution.get_greatestgumber, None, 'type check failed')
+        self.assertRaises(TypeError,self.solution.get_greatest_number, None, 'type check failed')
 
     def test_raiseValueWithMaxValueError(self):
-        self.assertRaises(ValueError,self.solution.get_greatestgumber, sys.maxsize + 1)
+        self.assertRaises(ValueError,self.solution.get_greatest_number, sys.maxsize + 1)
         
     def test_raiseValueWithMinValueError(self):
-        self.assertRaises(ValueError,self.solution.get_greatestgumber,(- sys.maxsize) - 1)
+        self.assertRaises(ValueError,self.solution.get_greatest_number,(- sys.maxsize) - 1)
     def tearDown(self):
         self.solution=None
 
