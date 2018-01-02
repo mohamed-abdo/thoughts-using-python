@@ -30,10 +30,10 @@ class test_Solution(unittest.TestCase):
         self.solution = Solution()
 
     def test_oneNumber(self):
-        self.assertEqual(self.solution.get_greatest_number(3), 3, 'one digit test failes')
+        self.assertEqual(self.solution.get_greatest_number(3), 3, 'one digit test failed')
     
     def test_ManyNumbers(self):
-            self.assertEqual(self.solution.get_greatest_number(123456789), 987654321, 'many digits test failes')
+            self.assertEqual(self.solution.get_greatest_number(123456789), 987654321, 'many digits test failed')
     
     def test_minValue(self):
         self.assertEqual(self.solution.get_greatest_number(-sys.maxsize), 8776444321)
