@@ -6,12 +6,12 @@ class Solution():
         if not isinstance(number, int):
             raise TypeError('{0} is mismatched type'.format(number))
         if number > sys.maxsize:
-            raise ValueError('{0} is out of the limits'.format(number))
+            raise ValueError('{0} is out of the limits, too much big number'.format(number))
         if number < - sys.maxsize:
-            raise ValueError('{0} is out of the limits'.format(number))
+            raise ValueError('{0} is out of the limits, too mini number'.format(number))
         #get the absolute value
         if number < 0 :
-            number = number *-1
+            number = - number
         #in case if one digit, return this digit
         if len(str(number)) == 1:
             return number
@@ -22,7 +22,6 @@ class Solution():
         3- descending sort the array
         4- join the array into string
         5- parse string into integer
-
         """
         return int(''.join(sorted(str(number), reverse=True)))
 
@@ -37,10 +36,10 @@ class test_Solution(unittest.TestCase):
             self.assertEqual(self.solution.get_greatest_number(123456789), 987654321, 'many digits test failed')
     
     def test_minValue(self):
-        self.assertEqual(self.solution.get_greatest_number(-sys.maxsize), 8776444321)
+        self.assertEqual(self.solution.get_greatest_number(-sys.maxsize), 9887777655433322200)
 
     def test_maxValue(self):
-            self.assertEqual(self.solution.get_greatest_number(sys.maxsize), 8776444321)
+            self.assertEqual(self.solution.get_greatest_number(sys.maxsize), 9887777655433322200)
 
     def test_raiseTypeError(self):
         self.assertRaises(TypeError,self.solution.get_greatest_number, 'd245', 'type check failed')
