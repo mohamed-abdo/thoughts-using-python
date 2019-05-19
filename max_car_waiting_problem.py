@@ -23,7 +23,7 @@ def calc_max_waiting_time(car_list, *dispensers):
     disp_dic = {'dispenser_{}'.format(i): dispenser('dispenser_{}'.format(i), v)
                 for i, v in enumerate(dispensers)}
     # build car queue
-    waiting_t = -1
+    waiting_t = 0
     next_disp = sufficient_disp = None
     car_queue = deque(car_list)
     while car_queue:
@@ -45,9 +45,28 @@ def calc_max_waiting_time(car_list, *dispensers):
             disp_dic[next_disp].busy_time = 0
     return waiting_t
 
+
+# basic unit test
+def test_calc_max_waiting_time_with_wait():
+    assert 8 == calc_max_waiting_time(
+        [2, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
+
+
+def test_calc_max_waiting_time_with_no_wait():
+    assert 0 == calc_max_waiting_time(
+        [2, 8, 4, 3, 12], 2, 8, 4, 3, 12), 'invalid result'
+
+
+def test_calc_max_waiting_time_max_liters():
+    assert -1 == calc_max_waiting_time(
+            [20, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
+
+
+def test_calc_max_waiting_time_sum_cars_liters():
+    assert -1 == calc_max_waiting_time(
+            [2, 8, 4, 3, 12], 8, 11, 3), 'invalid result'
+
+
+# print one result
 print('calc_max_waiting_time: ',
       calc_max_waiting_time([2, 8, 4, 3, 2], 7, 11, 3))
-# basic unit test
-assert 8 == calc_max_waiting_time([2, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
-assert -1 == calc_max_waiting_time([20, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
-assert -1 == calc_max_waiting_time([2, 8, 4, 3, 12], 8, 11, 3), 'invalid result'
