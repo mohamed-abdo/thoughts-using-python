@@ -9,7 +9,7 @@ class dispenser:
 
     def fuel(self, liters):
         if self.remaining_fuel < liters:
-            raise Exception("in sufficient fuel")
+            raise Exception("insufficient fuel")
         self.remaining_fuel -= liters
         self.busy_time = liters
 
@@ -48,23 +48,19 @@ def calc_max_waiting_time(car_list, *dispensers):
 
 # basic unit test
 def test_calc_max_waiting_time_with_wait():
-    assert 8 == calc_max_waiting_time(
-        [2, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
+    assert 8 == calc_max_waiting_time([2, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
 
 
 def test_calc_max_waiting_time_with_no_wait():
-    assert 0 == calc_max_waiting_time(
-        [2, 8, 4, 3, 12], 2, 8, 4, 3, 12), 'invalid result'
+    assert 0 == calc_max_waiting_time([2, 8, 4, 3, 12], 2, 8, 4, 3, 12), 'invalid result'
 
 
 def test_calc_max_waiting_time_max_liters():
-    assert -1 == calc_max_waiting_time(
-            [20, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
+    assert -1 == calc_max_waiting_time([20, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
 
 
 def test_calc_max_waiting_time_sum_cars_liters():
-    assert -1 == calc_max_waiting_time(
-            [2, 8, 4, 3, 12], 8, 11, 3), 'invalid result'
+    assert -1 == calc_max_waiting_time([2, 8, 4, 3, 12], 8, 11, 3), 'invalid result'
 
 
 # print one result
