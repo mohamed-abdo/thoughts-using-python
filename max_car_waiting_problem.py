@@ -14,10 +14,10 @@ class dispenser:
         self.busy_time = liters
 
 
-def calc_max_waiting_time(car_list, *dispensers):
-    if max(car_list) > max(*dispensers):
+def calc_max_waiting_time(cars_list, *dispensers):
+    if max(cars_list) > max(*dispensers):
         return -1
-    if sum(car_list) > sum([*dispensers]):
+    if sum(cars_list) > sum([*dispensers]):
         return -1
     # build fuel dispenser dic
     disp_dic = {'dispenser_{}'.format(i): dispenser('dispenser_{}'.format(i), v)
@@ -25,7 +25,7 @@ def calc_max_waiting_time(car_list, *dispensers):
     # build car queue
     waiting_t = 0
     next_disp = sufficient_disp = None
-    car_queue = deque(car_list)
+    car_queue = deque(cars_list)
     while car_queue:
         c = car_queue[0]  # peekß
         for d in [i for i in disp_dic if len(car_queue) > 0]:
