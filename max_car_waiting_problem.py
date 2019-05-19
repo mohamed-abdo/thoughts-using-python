@@ -23,14 +23,14 @@ def calc_max_waiting_time(cars_list, *dispensers):
     disp_dic = {'dispenser_{}'.format(i): dispenser('dispenser_{}'.format(i), v)
                 for i, v in enumerate(dispensers)}
     # build car queue
-    waiting_t = 0
+    waiting_tm = 0
     next_disp = sufficient_disp = None
-    car_queue = deque(cars_list)
-    while car_queue:
-        c = car_queue[0]  # peekß
-        for d in [i for i in disp_dic if len(car_queue) > 0]:
+    cars_queue = deque(cars_list)
+    while cars_queue:
+        c = cars_queue[0]  # peekß
+        for d in [i for i in disp_dic if len(cars_queue) > 0]:
             if c <= disp_dic[d].remaining_fuel and disp_dic[d].busy_time == 0:
-                fuel = car_queue.popleft()  # dequeue
+                fuel = cars_queue.popleft()  # dequeue
                 disp_dic[d].fuel(fuel)
                 break
         else:
@@ -41,9 +41,9 @@ def calc_max_waiting_time(cars_list, *dispensers):
                 return -1
             next_disp = min(sufficient_disp,
                             key=lambda i: disp_dic[i].busy_time)
-            waiting_t = max(disp_dic[next_disp].busy_time, waiting_t)
+            waiting_tm = max(disp_dic[next_disp].busy_time, waiting_tm)
             disp_dic[next_disp].busy_time = 0
-    return waiting_t
+    return waiting_tm
 
 
 # basic unit test
@@ -64,5 +64,4 @@ def test_calc_max_waiting_time_sum_cars_liters():
 
 
 # print one result
-print('calc_max_waiting_time: ',
-      calc_max_waiting_time([2, 8, 4, 3, 2], 7, 11, 3))
+print('calc_max_waiting_time: ', calc_max_waiting_time([2, 8, 4, 3, 2], 7, 11, 3))
