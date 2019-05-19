@@ -11,19 +11,19 @@ class dispenser:
         self.remaining_fuel-=liters
         self.busy_time=liters
 
-def solution(a,x,y,z):
-    if max(a) > max([x,y,z]):
+def calc_max_waitingt_time(car_list,dispenser1,dispenser2,dispenser3):
+    if max(car_list) > max([dispenser1,dispenser2,dispenser3]):
         return -1
-    if sum(a) > sum([x,y,z]):
+    if sum(car_list) > sum([dispenser1,dispenser2,dispenser3]):
         return -1
     #build fuel dispenser dic
-    disp_dic=dict({'x':dispenser('x',x),'y':dispenser('y',y),'z':dispenser('z',z)})
+    disp_dic=dict({'dispenser1':dispenser('dispenser1',dispenser1),'dispenser2':dispenser('dispenser2',dispenser2),'dispenser3':dispenser('dispenser3',dispenser3)})
     #build car queue
     waiting_t=-1
     next_disp=sufficient_disp=None
-    car_queue=deque(a)
+    car_queue=deque(car_list)
     while car_queue:
-        c=car_queue[0] #peek
+        c=car_queue[0] #peekß
         for d in [i for i in disp_dic if len(car_queue)>0]:
             if c<=disp_dic[d].remaining_fuel and disp_dic[d].busy_time==0:
                 fuel = car_queue.popleft() #dequeue
@@ -39,4 +39,4 @@ def solution(a,x,y,z):
             disp_dic[next_disp].busy_time=0
     return waiting_t
 
-print(solution([2,8,4,3,2],7,11,3))
+print(calc_max_waitingt_time([2,8,4,3,2],7,11,3))
