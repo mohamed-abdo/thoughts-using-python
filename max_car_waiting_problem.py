@@ -14,7 +14,7 @@ class dispenser:
         self.busy_time = liters
 
 
-def calc_max_waitingt_time(car_list, *dispensers):
+def calc_max_waiting_time(car_list, *dispensers):
     if max(car_list) > max(*dispensers):
         return -1
     if sum(car_list) > sum([*dispensers]):
@@ -45,10 +45,9 @@ def calc_max_waitingt_time(car_list, *dispensers):
             disp_dic[next_disp].busy_time = 0
     return waiting_t
 
-
-print('calc_max_waitingt_time: ',
-      calc_max_waitingt_time([2, 8, 4, 3, 2], 7, 11, 3))
+print('calc_max_waiting_time: ',
+      calc_max_waiting_time([2, 8, 4, 3, 2], 7, 11, 3))
 # basic unit test
-assert 8 == calc_max_waitingt_time([2, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
-assert -1 == calc_max_waitingt_time([20, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
-assert -1 == calc_max_waitingt_time([2, 8, 4, 3, 12], 8, 11, 3), 'invalid result'
+assert 8 == calc_max_waiting_time([2, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
+assert -1 == calc_max_waiting_time([20, 8, 4, 3, 2], 7, 11, 3), 'invalid result'
+assert -1 == calc_max_waiting_time([2, 8, 4, 3, 12], 8, 11, 3), 'invalid result'
