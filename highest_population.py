@@ -31,8 +31,8 @@ if __name__ == '__main__':
 
 
 @pytest.mark.parametrize('people,expected', [({1970: 2000, 1975: 2005, 1980: 2000, 1990: 2010, 1970: 2010}, 1990),
-                                             ({1995: 2010, 1975: 2005, 1980: 2000,
-                                               1999: 2010, 2000: 2010}, 1999)
+                                             ({1995: 2010, 1975: 2005, 1980: 2001,
+                                               1999: 2010, 2000: 2010}, 2000)
                                              ])
 def test_highest_pop(people, expected):
     assert expected in highest_pop(people), 'failed to get highest population'
