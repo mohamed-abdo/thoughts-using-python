@@ -17,8 +17,7 @@ def sliceText(text):
     for idx in range(len(text)):
         [s.append(slice(idx, idx+i, 1)) for i in range(1, len(text))]
     ret = []
-    [ret.append(text[i]) for i in s]
-    return set(ret)
+    return set([ret.append(text[i]) for i in s])
 
 
 if __name__ == '__main__':
